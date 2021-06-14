@@ -1,0 +1,12 @@
+# /etc/inittab
+#
+# This inittab is a basic inittab sample for sysvinit, which mimics
+# Buildroot's default inittab for BusyBox.
+id:3:initdefault:
+
+si::sysinit:/etc/init.d/rcS
+
+l3:3:wait:/etc/init.d/rc 3
+l6:6:wait:/etc/init.d/rc 6
+
+c1:12345:respawn:/sbin/agetty -n -l /usr/bin/autologinz 115200 ttyO2 linux

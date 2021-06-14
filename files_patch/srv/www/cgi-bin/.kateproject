@@ -1,0 +1,5 @@
+{
+  "name": "Bash CGI"
+, "files": [ { "directory": "./", "filters": ["*_sh.cgi"], "recursive": 1 } ]
+}
+ 

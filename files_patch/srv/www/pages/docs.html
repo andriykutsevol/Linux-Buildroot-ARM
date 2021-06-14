@@ -1,0 +1,77 @@
+<html>
+<head>
+	<META HTTP-EQUIV="Cache-control" CONTENT="NO-CACHE, must-revalidate">
+	<title>Metronom. PTP server.</title>
+	<!-- <meta http-equiv="Refresh" content="1" /> -->
+	<script type="text/javascript" src="../js/pjueAjaxForm.js"></script>
+	<script src="../js/script.js"></script>
+	<link class="include" rel="stylesheet" type="text/css" href="../jquery.plot/jquery.jqplot.min.css" />
+	<link rel="stylesheet" type="text/css" href="../jquery.plot/examples.min.css" />
+	<script src="./jquery-1.11.2/jquery-1.11.2.js"></script>
+</head>
+<body>
+<script> draw_window();
+</script>
+	<div id="header">
+        <div class="nav"><a class="nav" text-justyfy: left> Revision:  hw 0.1.1, sw 0.11, sn 2015		</a>
+            <a class="nav" href="/index.html"><span>&gt;</span>Home</a>
+            <a class="nav" href="/docs/"><span>&gt;</span>Docs</a>
+            <a class="nav" href="#" id="go" ><span>&gt;</span>About</a>
+        </div>
+    </div>
+    <div class="colmask leftmenu">
+      <div class="colleft">
+        <div class="col1" id="example-content">
+					<div id="data" style="width:1300px; height:1500px">
+					<a  class="example-link" href="../docs/m50ptp_ug-12-2014.pdf" target="_blank" download="">Download UserGuide ver. 12.2014</a>
+					</div>
+		</div>
+	    <div class="col2">
+			<div class="example-link"><a class="example-link" href="/index.html">Home</a></div>
+			<div class="example-link"><a class="example-link" href="/pages/ethernet.html">Network settings</a></div>
+			<div class="example-link"><a class="example-link" href="/pages/config.html">Configuration</a></div>
+			<div class="example-link"><a class="example-link" href="/pages/info.html">Info</a></div>
+			<div class="example-link"><a class="example-link" href="/pages/ptp_plot.html">PTP Statistic</a></div>
+		</div>
+	</div>
+	</div>
+<!--
+	<script type="text/javascript">
+	$(document).ready(function() { // вся магия после загрузки страницы
+	$('a#go').click( function(event){ // ловим клик по ссылки с id="go"
+		event.preventDefault(); // выключаем стандартную роль элемента
+		$('#overlay').fadeIn(400, // сначала плавно показываем темную подложку
+		 	function(){ // после выполнения предъидущей анимации
+				$('#modal_form') 
+					.css('display', 'block') // убираем у модального окна display: none;
+					.animate({opacity: 1, top: '50%'}, 200); // плавно прибавляем прозрачность одновременно со съезжанием вниз
+		});
+	});
+	/* Закрытие модального окна, тут делаем то же самое но в обратном порядке */
+	$('#modal_close, #overlay').click( function(){ // ловим клик по крестику или подложке
+		$('#modal_form')
+			.animate({opacity: 0, top: '45%'}, 200,  // плавно меняем прозрачность на 0 и одновременно двигаем окно вверх
+				function(){ // после анимации
+					$(this).css('display', 'none'); // делаем ему display: none;
+					$('#overlay').fadeOut(400); // скрываем подложку
+				}
+			);
+	});
+	});
+	</script>
+<div id="modal_form">  
+      <span id="modal_close">X</span>
+	<center><br><br>
+	<h2>Metronom. PTP Server.</h2>
+	<br>
+	ver. 4. 2015
+	<br><br>
+	Web Inteface by R. Gurin & D. Savenkov
+	</center>
+</div>
+<div id="overlay"></div>-->
+<div id="modal_form"><span id="modal_close">X</span><center><br><br><h2>Metronom. PTP Server.</h2><br>ver. 4. 2015<br><br>Web Inteface by R. Gurin & D. Savenkov</center></div><div id="overlay"></div>
+</body>
+</html>
+
+

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
+<HEAD>
+	<title>Metronom. PTP Server.</title>
+	<script type="text/javascript" src="PTP_DATA.js" ></script>
+	<script type="text/javascript" src="dygraph-combined.js"></script>
+	<!--<script type="text/javascript" src="unzoom.js"></script>-->
+	<script type="text/javascript" src="guidelines.js"></script>
+	<link class="include" rel="stylesheet" type="text/css" href="../jquery.plot/jquery.jqplot.min.css">
+	<link rel="stylesheet" type="text/css" href="../jquery.plot/examples.min.css">
+	<!--<script language="javascript" type="text/javascript" src="excanvas.js"></script>-->
+	<script type="text/javascript" src="./jquery-1.11.2/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="../js/script.js"></script>
+
+</head>
+<body><script type="text/javascript" > draw_window();</script>
+<div id="header">
+<div class="nav"><a class="nav"> Revision:  hw 0.1.2, sw 4.1, sn 2146               </a>
+            <a class="nav" href="/index.html"><span>&gt;</span>Home</a>
+            <a class="nav" href="/pages/docs.html"><span>&gt;</span>Docs</a>
+            <a class="nav" href="#" id="go" ><span>&gt;</span>About</a>
+        </div>
+    </div>
+    <div class="colmask leftmenu">
+      <div class="colleft">
+        <div class="col1" id="example-content">
+<div id="graphdiv" style="width:1300px; height:500px;border: 1px solid black"></div>
+<script type="text/javascript">
+values = [ -100, 100 ];
+color = [ "orange", "orange" ];
+styler = function(ctx, g, value, idx) 
+{
+	if (ctx.setLineDash) {
+	ctx.setLineDash([5, 5]);
+	}
+};
+ g2 = new Dygraph(document.getElementById("graphdiv"),
+	data3, 
+	{
+		title:'PPS Offset, ns.', 
+		titleHeight: 24,
+		seriesDefaults: {showMarker:false}, 
+		drawAxesAtZero: true,
+		animatedZooms: true,
+		cursor: {
+		    show: true,
+		    tooltipLocation:'sw', 
+		    zoom:true
+		}, 
+		axesDefaults:{
+		    rendererOptions: {
+			// align ticks for each axis across the grid
+			alignTicks: true
+		    }
+		},
+		labels: ["Time", "Offset"],
+		legend: 'always',
+		colors: ["rgb(255,255,140)",
+			 "rgba(50,50,200,0.4)"],
+		axisLineColor: 'black',
+		xAxisHeight: 35,
+		ylabel: 'PPS offset (ns)',
+		xlabel: 'Date',
+		labelsDivWidth: 250,
+		labelsDivStyles: {
+		'text-align': 'left',
+                'backgroundColor': 'rgba(160, 160, 160, 1)',
+                'padding': '4px',
+                'border': '1px solid black',
+                'borderRadius': '5px',
+                'boxShadow': '4px 4px 4px #888'
+              },
+
+              axes: {
+                x: {
+                  gridLineWidth: 2,
+                  drawGrid: true,
+                  axisLineWidth: 1.5,
+                  axisLineColor: "#000000",
+                  independentTicks: true,
+                },
+                y: {
+                  valueRange: [-1000, 1001],
+                  drawGrid: true,
+		  axisLabelWidth: 65,
+                  axisLineColor: "#000000",
+                  axisLineWidth: 1.5,
+                  independentTicks: true
+                }
+      	     },
+	plugins : [
+	Dygraph.Plugins.Guidelines(values, color, styler)
+	]
+	}          // options
+);
+</script>
+</div>
+         <div class="col2">
+     <div class="example-link"><a class="example-link" href="/index.html">Home</a></div>
+	 <div class="example-link"><a class="example-link" href="/pages/ethernet.html">Network settings</a></div>
+	 <div class="example-link"><a class="example-link" href="/pages/config.html">Configuration</a></div>
+	 <div class="example-link"><a class="example-link" href="/pages/info.html">Info</a></div>
+	 <div class="example-link"><a class="example-link" href="/pages/ptp_plot.html">PTP Statistic</a></div>
+</div>
+</div>
+</div>
+<div id="modal_form"><span id="modal_close">X</span><center><br><br><h2>Metronom. PTP Server.</h2><br>ver. 4. 2015<br><br>Web Inteface by R. Gurin & D. Savenkov</center></div><div id="overlay"></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

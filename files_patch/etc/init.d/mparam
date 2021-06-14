@@ -1,0 +1,51 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:        parameter monitor
+# Required-Start:  $network $remote_fs $syslog
+# Required-Stop:   $network $remote_fs $syslog
+# Default-Start:   2 3 4 5
+# Default-Stop:    1
+# Short-Description: Start parameter monitor daemon
+### END INIT INFO
+
+if [ -f /etc/safe_mode ]; then
+exit 0
+fi
+
+DAEMON=/usr/bin/mparam/mparam
+
+test -x $DAEMON || exit 5
+
+case $1 in
+	start)
+		echo "Starting monitor parameter"
+		cd /usr/bin/mparam
+  		#start-stop-daemon --start --quiet --oknodo --pidfile $PIDFILE --startas $DAEMON --
+		$DAEMON &
+  		;;
+	stop)
+		echo "Stopping monitor parameter"
+		killall mparam
+  		;;
+	restart|force-reload)
+		$0 stop && sleep 2 && $0 start
+  		;;
+	try-restart)
+		if $0 status >/dev/null; then
+			$0 restart
+		else
+			exit 0
+		fi
+		;;
+	reload)
+		exit 3
+		;;
+	status)
+		status_of_proc $DAEMON "mparam"
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart|try-restart|force-reload|status}"
+		exit 2
+		;;
+esac

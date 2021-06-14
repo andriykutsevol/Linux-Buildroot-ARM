@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
+<HEAD>
+	<META HTTP-EQUIV="Cache-control" CONTENT="NO-CACHE, must-revalidate">
+	<title>Metronom. PTP server.</title>
+	<style type="text/css">P.just{text-align: justify;}</style>
+	<link class="include" rel="stylesheet" type="text/css" href="../jquery.plot/jquery.jqplot.min.css">
+	<link rel="stylesheet" type="text/css" href="../jquery.plot/examples.min.css">
+	<script type="text/javascript" src="./jquery-1.11.2/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="../js/pjueAjaxForm.js"></script> 
+	<script type="text/javascript" src="../js/script.js"></script>
+	<script type="text/javascript">onload_cfg();
+	</script>
+</HEAD>
+<BODY><script type="text/javascript"> draw_window();</script>
+	<div id="header">
+        <div class="nav"><a class="nav"> Revision:  hw 0.1.1, sw 0.11, sn 2015		</a>
+            <a class="nav" href="/index.html"><span>&gt;</span>Home</a>
+            <a class="nav" href="/pages/docs.html"><span>&gt;</span>Docs</a>
+            <a class="nav" href="#" id="go" ><span>&gt;</span>About</a>
+        </div>
+    </div>
+    <div class="colmask leftmenu">
+      <div class="colleft">
+        <div class="col1" id="example-content">
+<!-- Example scripts go here
+
+  <style type="text/css">
+    .button-reset {
+      margin: 1px;
+      margin-left: 1px;
+    }
+ </style>
+  -->
+
+	Source selection of 1PPS.
+<form id = "cfg_form" action="/cgi-bin/set_config_sh.cgi" method="get" name="cfg_form"><pre>
+<input id="gl_gs" type="radio"  name="gl_gs" value="GPS">GLONASS/GPS<Br>
+<input id="1pps" type="radio" name="gl_gs" value="1PPS">1PPS INPUT<Br>
+<input id="rs" type="radio" name="gl_gs" value="RS">RS-232-1<Br>	
+</pre>
+	Source selection of NMEA
+<pre>
+<input id="gl_gs_na" type="radio"  name="gl_gs_na" value="GPS">GLONASS/GPS<Br>
+<input id="emul" type="radio" name="gl_gs_na" value="Emulator">Emulator<Br>
+<input id="rs_na" type="radio" name="gl_gs_na" value="RS">RS-232-1<Br>
+</pre>
+
+	<div>Antenna Delay:         <pre><input id="Delay" type="text" name="Delay_A" size="16" value=" "></pre></div><Br>
+	<div><input id="conf_button"  type="button" onclick="update_cfg_form()" value="Set" name = "bt">   <input id="cancel_cfg" type="button" onClick="window.location.reload()" style="color:red" value="Busy"></div>
+	</form>
+	
+	
+<FORM METHOD=GET ACTION="/cgi-bin/reboot_call.cgi"><pre>
+<INPUT TYPE=SUBMIT value="Reboot">
+	</pre>
+	</FORM>
+	
+
+	<form  name="onsubmitForm_cfg" id="onsubmitForm_cfg" action="/cgi-bin/onload_cfg_sh.cgi" method="get"> </form>
+	
+	</div>
+		<div class="col2">
+			<div class="example-link"><a class="example-link" href="/index.html">Home</a></div>
+			<div class="example-link"><a class="example-link" href="/pages/ethernet.html">Network settings</a></div>
+			<div class="example-link"><a class="example-link" href="/pages/config.html">Configuration</a></div>
+			<div class="example-link"><a class="example-link" href="/pages/info.html">Info</a></div>
+			<div class="example-link"><a class="example-link" href="/pages/ptp_plot.html">PTP Statistic</a></div>
+		</div>
+	</div>
+	</div>
+<div id="modal_form"><span id="modal_close">X</span><center><br><br><h2>Metronom. PTP Server.</h2><br>ver. 4. 2015<br><br>Web Inteface by R. Gurin & D. Savenkov</center></div><div id="overlay"></div>
+</BODY>
+</html>
+

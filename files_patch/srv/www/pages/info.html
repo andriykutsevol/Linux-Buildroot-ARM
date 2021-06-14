@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
+<HEAD>
+	<META HTTP-EQUIV="Cache-control" CONTENT="NO-CACHE, must-revalidate">
+
+	<script type="text/javascript">			
+	   setInterval(refreshIframe2, 500);	
+	   function refreshIframe2() {
+			Print_ajax()
+	   } 
+	</script>
+
+	   
+	<script type="text/javascript" language="javascript">
+	   
+	var c = new String;
+	var req = Create();
+	
+	function Create()
+	{ 
+			if(navigator.appName == "Microsoft Internet Explorer"){ 
+				req = new ActiveXObject("Microsoft.XMLHTTP"); }
+			else req = new XMLHttpRequest();  
+		return req; 
+	} 
+
+	function Print_ajax()
+	{
+		req.open('post', '/cgi-bin/info.cgi' , true );
+		req.onreadystatechange = Refresh;
+		req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+		req.send(null); 
+	} 
+
+	function Refresh()
+	{
+		var a = req.readyState; 
+		var b = req.responseText; 
+		if( a == 4 )
+			{
+				document.getElementById('data').innerHTML = b;
+				c=b;
+			}
+		else document.getElementById('data').innerHTML = c;
+	}
+
+
+	</script>
+	<title>Metronom. PTP server.</title>
+	<script type="text/javascript" src="./jquery-1.11.2/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="../js/pjueAjaxForm.js"></script>
+	<script type="text/javascript" src="../js/script.js"></script>
+	<link class="include" rel="stylesheet" type="text/css" href="../jquery.plot/jquery.jqplot.min.css">
+	<link rel="stylesheet" type="text/css" href="../jquery.plot/examples.min.css">
+</HEAD>
+<BODY>
+<script type="text/javascript"> draw_window();</script>
+	<div id="header">
+        <div class="nav"><a class="nav"> Revision:  hw 0.1.1, sw 0.11, sn 2015		</a>
+            <a class="nav" href="/index.html"><span>&gt;</span>Home</a>
+            <a class="nav"  href="/pages/docs.html"><span>&gt;</span>Docs</a>
+            <a class="nav" href="#" id="go" ><span>&gt;</span>About</a>
+        </div>
+    </div>
+    <div class="colmask leftmenu">
+      <div class="colleft">
+        <div class="col1" id="example-content">
+					<div id="data" style="width:1300px;">
+					
+					<IFRAME name="iframe2" id="iframe_id" SRC ="/cgi-bin/info.cgi"  
+					FRAMEBORDER="0" MARGINHEIGHT="0"  MARGINWIDTH="0" WIDTH="920" HEIGHT="990">
+					</IFRAME>
+					<!--<ILAYER SRC ="/srv/www/cgi-bin/info.cgi" left="0"  top="0" VISIBILITY="show"  WIDTH="320" HEIGHT="320">
+					</ILAYER>-->
+					</div>
+		</div>
+	    <div class="col2">
+			<div class="example-link"><a class="example-link" href="/index.html">Home</a></div>
+			<div class="example-link"><a class="example-link" href="/pages/ethernet.html">Network settings</a></div>
+			<div class="example-link"><a class="example-link" href="/pages/config.html">Configuration</a></div>
+			<div class="example-link"><a class="example-link" href="/pages/info.html">Info</a></div>
+			<div class="example-link"><a class="example-link" href="/pages/ptp_plot.html">PTP Statistic</a></div>
+		</div>
+	</div>	</div>
+	<div id="modal_form"><span id="modal_close">X</span><center><br><br><h2>Metronom. PTP Server.</h2><br>ver. 4. 2015<br><br>Web Inteface by R. Gurin & D. Savenkov</center></div><div id="overlay"></div>
+	</body>
+
+</html>
+

@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
+<HEAD>
+	<META HTTP-EQUIV="Cache-control" CONTENT="NO-CACHE, must-revalidate">
+	<title>Metronom. PTP server.</title>
+	<!-- <meta http-equiv="Refresh" content="1" /> -->
+	<script type="text/javascript" src="../js/pjueAjaxForm.js"></script>
+	<script type="text/css" src="../js/script.js"></script>
+	<link class="include" rel="stylesheet" type="text/css" href="../jquery.plot/jquery.jqplot.min.css">
+	<script type="text/css" src="./jquery-1.11.2/jquery-1.11.2.js"></script>
+	<link rel="stylesheet" type="text/css" href="../jquery.plot/examples.min.css">
+</head>
+<body>
+<script type="text/css"> draw_window();</script>
+	<div id="header">
+        <div class="nav"><a class="nav"> Revision:  hw 0.1.1, sw 0.11, sn 2015		</a>
+            <a class="nav" href="/index.html"><span>&gt;</span>Home</a>
+            <a class="nav" href="/pages/docs.html"><span>&gt;</span>Docs</a>
+            <a class="nav" href="#" id="go" ><span>&gt;</span>About</a>
+        </div>
+    </div>
+    <div class="colmask leftmenu">
+      <div class="colleft">
+        <div class="col1" id="example-content">
+		<div id="graphdiv" style="width:1300px;">
+		
+		
+	Ethernet settings:
+	<form id="eth_form" name="eth_form" action="/cgi-bin/set_ethernet_sh.cgi"  method="get">
+	<div id="ethernet"><pre>
+	<label>IP Address:      <input id="ip_addr" type="text" name="m" size="16" value=" "></label><br><br>
+	<label>Network mask:    <input id="mask" type="text" name="n" size="16" value=" "></label><br><br>
+	<label>Subnetwork:      <input id="subn" type="text" name="l" size="16" value=" "></label><br><br>
+	<label>Gateway:         <input id="getw" type="text" name="x" size="16" value=" "></label><br><br>
+	<input id="eth_button" type="button" onclick="update_eth_form()"  value="Set Ethernet Settings"> <input id="cnancel_eth" type="button" onClick="window.location.reload()" style="color:red" value="Busy"></pre>
+	</div></form>
+	Add external NTP server (S1...S4):
+	<form id="ntp_form" name="ntp_form" action="/cgi-bin/set_ntp_sh.cgi" method="get">
+	<div id="ntp"><pre>
+	<label>Server 1:         <input id="ntp_1" type="text" name="m" size="16" value=" "><br>	</label><input id="s1e_ch" type="checkbox" name="s1e" value="a1">Enable<br>
+	<label>Server 2:         <input id="ntp_2" type="text" name="n" size="16" value=" "><br>	</label><input id="s2e_ch" type="checkbox" name="s2e" value="a2">Enable<br>
+	<label>Server 3:         <input id="ntp_3" type="text" name="l" size="16" value=" "><br>	</label><input id="s3e_ch" type="checkbox" name="s3e" value="a3">Enable<br>
+	<label>Server 4:         <input id="ntp_4" type="text" name="x" size="16" value=" "><br>	</label><input id="s4e_ch" type="checkbox" name="s4e" value="a4">Enable<br>
+	<input id="ntp_button" type="button" onclick="update_ntp_form()" value="Set External NTP Servers"> <input  id="cnancel_ntp" type="button" onClick="window.location.reload()" style="color:red" value="Busy"></pre>
+	</div></form>
+	
+
+	Add DNS server (S1...S4):
+	<form id="dns_form" name="dns_form" action="/cgi-bin/set_dns_sh.cgi" method="get">
+	<div id="dns"><pre>
+	<label>DNS server 1:     <input id="dns_1" type="text" name="a" size="16" value=" "><br>	</label><input id="ds1e_ch" type="checkbox" name="ds1e" value="w1">Enable<br>
+	<label>DNS server 2:     <input id="dns_2" type="text" name="b" size="16" value=" "><br>	</label><input id="ds2e_ch" type="checkbox" name="ds2e" value="w2">Enable<br>
+	<label>DNS server 3:     <input id="dns_3" type="text" name="c" size="16" value=" "><br>	</label><input id="ds3e_ch" type="checkbox" name="ds3e" value="w3">Enable<br>
+	<label>DNS server 4:     <input id="dns_4" type="text" name="f" size="16" value=" "><br>	</label><input id="ds4e_ch" type="checkbox" name="ds4e" value="w4">Enable<br>
+	<input id="dns_button" type="button" onclick="update_dns_form()" value="Set DNS servers"> <input id="cnancel_dns" type="button" onClick="window.location.reload()" style="color:red" value="Busy"></pre></div>
+	</form>
+	
+
+	<!-- - - - - - - -  Onload Data - - - - - - -   -->
+	<form name="onsubmitForm" id="onsubmitForm" action="/cgi-bin/onload_net_sh.cgi" method="get"> 
+		<input type="hidden" id="fantom" name="m" size="16" value="-">  </form>
+		<FORM METHOD=GET ACTION="/cgi-bin/reboot_call.cgi">
+	<INPUT TYPE=SUBMIT value="Reboot"></FORM>
+			
+		
+	</div>
+		</div>
+		 <div class="col2">
+		 <div class="example-link"><a class="example-link" href="/index.html">Home</a></div>
+		 <div class="example-link"><a class="example-link" href="/pages/ethernet.html">Network settings</a></div>
+		 <div class="example-link"><a class="example-link" href="/pages/config.html">Configuration</a></div>
+		 <div class="example-link"><a class="example-link" href="/pages/info.html">Info</a></div>
+		 <div class="example-link"><a class="example-link" href="/pages/ptp_plot.html">PTP Statistic</a></div>
+	</div>
+	</div>	</div>
+	<div id="modal_form"><span id="modal_close">X</span><center><br><br><h2>Metronom. PTP Server.</h2><br>ver. 4. 2015<br><br>Web Inteface by R. Gurin & D. Savenkov</center></div><div id="overlay"></div>
+	</body>
+
+</html>
+
+

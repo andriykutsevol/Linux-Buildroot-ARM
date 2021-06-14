@@ -1,0 +1,5 @@
+#!/bin/sh
+
+#echo "Please wait: booting..."
+#echo "We are: $0 : $1"
+touch ./banner

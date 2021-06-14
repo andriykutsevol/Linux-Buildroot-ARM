@@ -1,0 +1,36 @@
+#! /bin/sh
+#
+# reboot	Execute the reboot command.
+#
+# Version:      @(#)reboot  2.75  22-Jun-1998  miquels@cistron.nl
+#
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+echo -n "Rebooting... "
+
+echo -n "Stopping thttpd"
+start-stop-daemon --stop --quiet --exec $thttpd -u root
+echo "."
+
+if sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\1 \2/p' /proc/mounts | 
+  grep -q "^/ nfs$"; then
+  echo "NOT deconfiguring network interfaces: / is an NFS mount"
+elif sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\1 \2/p' /proc/mounts |  
+  grep -q "^/ smbfs$"; then
+  echo "NOT deconfiguring network interfaces: / is an SMB mount"
+elif sed -n 's/^[^ ]* \([^ ]*\) \([^ ]*\) .*$/\2/p' /proc/mounts | 
+  grep -qE '^(nfs|smbfs|ncp|coda)$'; then
+  echo "NOT deconfiguring network interfaces: network shares still mounted."
+else
+  echo -n "Deconfiguring network interfaces... "
+  ifdown -a
+  echo "done."
+fi
+
+echo "Umounting load file systems..."
+umount -f -a -r > /dev/null 2>&1
+echo "Done"
+echo "***IC";
+
+reboot -d -f -i

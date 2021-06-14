@@ -1,0 +1,55 @@
+#!/bin/sh
+
+#echo "*** Start rc at RunLevel. $1"
+#echo "*** RUNLEVEL= $RUNLEVEL"
+
+  # Ignore CTRL-C only in this shell, so we can interrupt subprocesses.
+  trap ":" INT QUIT TSTP
+
+  # Set onlcr to avoid staircase effect.
+  stty onlcr 0>&1
+
+  # Now find out what the current and what the previous runlevel are.
+  runlevel=$RUNLEVEL
+
+#
+# Start script or program.
+#
+startup() {
+
+  case "$1" in
+	*.sh)
+		# Source shell script for speed.
+		(
+			trap - INT QUIT TSTP
+			scriptname=$1
+			shift
+			. $scriptname
+		)
+		;;
+	*)
+		"$@"
+		;;
+  esac
+}
+
+
+. /etc/default/rcS
+
+  if [ -d /etc/rc$runlevel.d ]
+  then
+
+	# Now run the START scripts for this runlevel.
+	for i in /etc/rc$runlevel.d/S*
+	do
+		[ ! -f $i ] && continue
+		case "$runlevel" in
+			0|6)
+				startup $i stop
+				;;
+			*)
+				startup $i start
+				;;
+		esac
+	done
+  fi

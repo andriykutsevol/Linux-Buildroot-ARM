@@ -1,0 +1,48 @@
+#!/bin/sh
+
+if [ -f /etc/safe_mode ]; then
+exit 0
+fi
+
+DAEMON=/usr/sbin/inetd
+PIDFILE=/var/run/inetd.pid
+
+test -x $DAEMON || exit 5
+
+if [ -r /etc/default/inet ]; then
+	. /etc/default/inet
+fi
+
+case $1 in
+	start)
+		echo -n "Starting INETD"
+  		start-stop-daemon -v --background --start --quiet \
+  		--oknodo --pidfile $PIDFILE --startas $DAEMON -- $INETD_OPT /etc/inet.conf
+		echo '.'
+  		;;
+	stop)
+		echo "Stopping INETD"
+  		start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE
+		rm -f $PIDFILE
+  		;;
+	restart|force-reload)
+		$0 stop && sleep 2 && $0 start
+  		;;
+	try-restart)
+		if $0 status >/dev/null; then
+			$0 restart
+		else
+			exit 0
+		fi
+		;;
+	reload)
+		exit 3
+		;;
+	status)
+		status_of_proc $DAEMON "INETD"
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart|try-restart|force-reload|status}"
+		exit 2
+		;;
+esac
